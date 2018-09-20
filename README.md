@@ -1,5 +1,6 @@
 # Unity Icon Customizer
 You can customize your app icon with this. Like adding version number, 'BETA' and so on.
+日本語は→![こちら](https://github.com/makoto-unity/UnityIconCustomizer/blob/master/README.ja.md)
 
 ![UnityIconCustomizer](https://github.com/makoto-unity/Pics/blob/master/UnityIconCustomizer/IconScreenShot2.png?raw=true)
 
