@@ -1,9 +1,12 @@
-# UnityIconCustomizer
+# Unity Icon Customizer
 You can customize your app icon with this. Like adding version number, 'BETA' and so on.
+
+![UnityIconCustomizer](https://github.com/makoto-unity/Pics/blob/master/UnityIconCustomizer/IconScreenShot2.png?raw=true)
 
 # Dependency
 - Unity 
 - iOS (Android on WIP)
+- Available for Unity Cloud Build
 
 ## What's it?
 
@@ -15,7 +18,7 @@ You can customize your icon in Unity Editor as you like.
 
 Can you distinguish between release and beta version apps?
 If the app icon is same, you must not pick it out.
-So, when you can build for beta, it can attatch to beta 'ribon' in your icon. It's useful, isn't it?
+So, when you can build for beta, it can attatch to beta 'ribon' in your icon. 
 
 ## Setup and Usage
 
