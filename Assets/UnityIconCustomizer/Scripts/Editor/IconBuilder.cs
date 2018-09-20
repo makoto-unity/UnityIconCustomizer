@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 
 public class IconBuilder
 {
-    const string tmpIconPath = "/UnityIconCustomizer/Generated/tmpIcon.png";
+    const string tmpIconPath = "UnityIconCustomizer/Generated/tmpIcon.png";
     const string iconPrefabPath = "Assets/UnityIconCustomizer/Res/IconGenSystem.prefab";
 
     private static void SetIcons(Texture2D originalIcon)
@@ -15,23 +16,25 @@ public class IconBuilder
 
         for (var i = 0; i < iconSizes.Length; i++)
         {
-            texture2Ds[i] = AssetDatabase.LoadAssetAtPath<Texture2D>( "Assets" + tmpIconPath);
+            texture2Ds[i] = AssetDatabase.LoadAssetAtPath<Texture2D>( "Assets/" + tmpIconPath);
         }
 
         PlayerSettings.SetIconsForTargetGroup(group, texture2Ds);
     }
 
-    // デモ用のビルドを作る準備
+    // iOS用アプリアイコンを自動生成
     [UnityEditor.MenuItem("MyApp/GenerateIconForIOS")]
     public static void GenerateIconForIOS()
     {
         // Icon を生成。まずは元となるPrefabを読みこんでその中身を変える
         GameObject iconGenPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(iconPrefabPath);
         GameObject iconGen = Object.Instantiate(iconGenPrefab);
-        Text[] texts = iconGen.GetComponentsInChildren<Text>();
+
         // バージョン番号
+        Text[] texts = iconGen.GetComponentsInChildren<Text>();
         string verStr = "Ver." + PlayerSettings.bundleVersion + "(" + PlayerSettings.iOS.buildNumber + ")";
         Debug.Log(verStr);
+        Assert.IsTrue(texts[1].gameObject.name == "Version"); // 念のため確認
         texts[1].text = verStr;
 
         // RenderTexture に焼き込んだ画像をTexture2Dにする
@@ -45,9 +48,9 @@ public class IconBuilder
 
         // いったんオリジナルアイコンとしてpngとして吐く
         byte [] bytes = newTexture.EncodeToPNG();
-        System.IO.File.WriteAllBytes(Application.dataPath + tmpIconPath, bytes);
+        System.IO.File.WriteAllBytes(Application.dataPath + "/" + tmpIconPath, bytes);
         AssetDatabase.Refresh();
-        Texture2D newIconImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets" + tmpIconPath);
+        Texture2D newIconImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/" + tmpIconPath);
 
         // できたTexture2Dをアイコンにセットする
         SetIcons(newIconImage);
