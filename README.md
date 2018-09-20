@@ -1,6 +1,10 @@
 # UnityIconCustomizer
 You can customize your app icon with this. Like adding version number, 'BETA' and so on.
 
+# Dependency
+- Unity 
+- iOS (Android on WIP)
+
 ## What's it?
 
 This project include the generator app icon for iOS.
@@ -13,7 +17,7 @@ Can you distinguish between release and beta version apps?
 If the app icon is same, you must not pick it out.
 So, when you can build for beta, it can attatch to beta 'ribon' in your icon. It's useful, isn't it?
 
-## How to use
+## Setup and Usage
 
 1. You can customize IconGenSystem in your project, and apply the prefab.
 2. Add define symbols in IconBuilder.cs for version handling as you like.
